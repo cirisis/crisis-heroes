@@ -1,0 +1,112 @@
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(2,4,9,10,11,12);
+const int sensorPin = A0;
+const int MatorInPin1 = 5;
+const int MatorInPin2 = 6;
+
+int sensorValue =0;
+int outputValue =0;
+int percentValue =0;
+
+bool state = 0;
+
+void setup() {
+ serial.begin(9600);
+ lcd.begin(16,20);
+ pinMode(MatorInPin1, OUTPUT);
+ pinMode(MatorInPin2, OUTPUT);
+
+
+ lcd.setCursor(0,0);
+ lcd.print("Suni Suvarma");
+ lcd.setCursor(0,1);
+ lcd.print("Avtomatik sistem");
+ delay(4000);
+ lcd.clear();
+ lcd.setCursor(0, 0);
+ lcd.print("Konfuqurasiya edilir");
+ for (int i = 0; i<10; i++){
+  if (i == 4)
+  {
+    lcd.setCursor(0, 1);
+    lcd.print(".");
+  }
+  else lcd.print(".");
+  delay(200);
+ }
+ lcd.setCursor(5, 1);
+ lcd.print("Tamam");
+ delay(1000);
+ lcd.clear();
+ lcd.setCursor(1, 0);
+ lcd.print("Sensor Aktivdir");
+ delay(1500);
+}
+
+ 
+void loop() {
+  sensorValue = analogRead(sensorPin);
+  Serial.print("\n\nAnalog Deyer:");
+  Serial.print(SensorValue);
+
+  percentValue = map(sensorValue, 1023,300,0,100);
+  Serial.print("\nFaiz Deyeri:");
+  Serial.print(percentValue);
+  Serial.print("%");
+
+  if (state == 0);
+  {
+    if (percentValue < 40);
+    motorStart () ;
+    state = i;
+  }
+  else
+  {
+    motorStop ();
+  state = 0;
+  }
+}
+else if (state == 1)
+{
+  if (percentValue < 90)
+
+{
+  motorStop();
+  state = 0;
+}
+}
+delay(1000);
+lcd.clear();
+}
+
+void motorStop()
+{
+  analogWrite(MotorInPin1, 0); //stop motor
+  analogWrite(MotorInPin2, 0);
+  lcd.setCursor(0, 0);
+  lcd.print("Nemlilik:");
+  lcd.print(percentValue);
+  lcd.print("%");
+  lcd.setCursor(0, 1);
+  lcd.print("Mator: ");
+  lcd.print("OFF");
+
+  {
+
+    void motorStart ()
+    {
+      
+    
+  analogWrite(MotorInPin1, 130); 
+  analogWrite(MotorInPin2, 0);
+  lcd.setCursor(0, 0);
+  lcd.print("Nemlilik:");
+  lcd.print(percentValue);
+  lcd.print("%");
+  lcd.setCursor(0, 1);
+  lcd.print("Mator: ");
+  lcd.print("ON");
+  
+ 
+}
