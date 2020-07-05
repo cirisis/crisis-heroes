@@ -1,0 +1,16 @@
+
+  lcd.setCursor(0, 0);
+  lcd.print("Suni Suvarma");
+  lcd.setCursor(0, 1);
+  lcd.print("Avtomatik sistem");
+  delay(4000);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Konfuqurasiya edilir");
+  for (int i = 0; i < 10; i++) {
+    if (i == 4)
+    {
+      lcd.setCursor(0, 1);
+      lcd.print(".");
+    }
+    else lcd.print(".");
